@@ -59,7 +59,7 @@ def analisis_datos(df, pais_ejemplo):
 def generar_graficos(resultados):
     # Gráfico 1: Emisiones totales acumuladas (top 10)
     plt.figure(figsize=(12, 8))
-    resultados['top_10_emisiones_total'].sort_values().plot(kind='barh', color='darkblue')
+    resultados['top_10_emisiones_total'].sort_values().plot(kind='barh', color='orange')
     plt.title('Top 10 países con mayores emisiones acumuladas de CO2 (histórico)')
     plt.xlabel('Emisiones totales de CO2 (millones de toneladas)')
     plt.ylabel('País')
@@ -69,7 +69,7 @@ def generar_graficos(resultados):
     
     # Gráfico 2: Emisiones en el año más reciente (top 10)
     plt.figure(figsize=(12, 6))
-    resultados['top_10_emisiones_recientes'].plot(kind='bar', color='green')
+    resultados['top_10_emisiones_recientes'].plot(kind='bar', color='purple')
     plt.title(f'Top 10 países con mayores emisiones de CO2 en {resultados["año_reciente"]}')
     plt.ylabel('Emisiones de CO2 (millones de toneladas)')
     plt.xlabel('País')
@@ -119,15 +119,15 @@ def main():
         elif seleccion in paises_disponibles:
             pais_ejemplo = seleccion
             break
-
+        #Mensaje para el usuario, en caso de error.    
         print("Selección no válida. Intenta con el número o nombre exacto del país.")
-
+    #Mensaje para el usuario.
     print("Analizando datos...")
     resultados = analisis_datos(df, pais_ejemplo)
-
+    #Mensaje para el usuario.
     print("Generando gráficos...")
     generar_graficos(resultados)
-
+    
     print("\nResultados del análisis:")
     print("\n1. Top 10 países con mayores emisiones acumuladas:")
     print(resultados['top_10_emisiones_total'])
